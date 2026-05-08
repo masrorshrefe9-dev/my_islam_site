@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پڕۆژەیا ئیسلامی - مەسروور</title>
+    <style>
+        :root { --main-color: #27ae60; --dark-bg: #121212; --card-bg: #1e272e; }
+        body { font-family: 'Tahoma', sans-serif; background: var(--dark-bg); color: white; margin: 0; text-align: center; }
+        .page { display: none; padding: 20px; animation: fadeIn 0.4s; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .btn-lang { display: block; width: 80%; padding: 20px; margin: 20px auto; background: var(--main-color); color: white; border-radius: 15px; font-size: 22px; font-weight: bold; border: none; cursor: pointer; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 15px; cursor: pointer; font-weight: bold; border: 1px solid #333; }
+        .list-container { height: 60vh; overflow-y: auto; background: #181818; padding: 15px; border-radius: 12px; text-align: right; }
+        .item-row { background: #252e35; padding: 15px; margin-bottom: 10px; border-radius: 8px; border-right: 5px solid var(--main-color); cursor: pointer; }
+        #qibla-arrow { font-size: 100px; margin: 30px 0; display: inline-block; transition: 0.1s; color: var(--main-color); }
+    </style>
+</head>
+<body>
+
+    <div id="lang-page" class="page active">
+        <h1 style="color: var(--main-color); margin-top: 80px;">ب خێر بێی بۆ سایتێ ئیسلامی</h1>
+        <button class="btn-lang" onclick="showPage('main-page')">بادینی (Badini)</button>
+        <button class="btn-lang" onclick="showPage('main-page')">سۆرانی (Sorani)</button>
+    </div>
+
+    <div id="main-page" class="page">
+        <h2 style="color: var(--main-color);">مینیویا سەرەکی</h2>
+        <div class="grid">
+            <div class="card" onclick="showPage('quran-page')">📖 قورعان</div>
+            <div class="card" onclick="showPage('dua-page')">🤲 دوعا</div>
+            <div class="card" onclick="showPage('qibla-page')">🕋 قیبلە</div>
+            <div class="card" onclick="alert('بزویترین دەم')">📜 فەرموودە</div>
+        </div>
+    </div>
+
+    <div id="quran-page" class="page">
+        <button onclick="showPage('main-page')">⬅ پاش</button>
+        <div class="list-container" id="quran-list"></div>
+    </div>
+
+    <div id="ayah-page" class="page">
+        <button onclick="showPage('quran-page')">⬅ پاش</button>
+        <h2 id="surah-title"></h2>
+        <div id="ayah-content" style="background:white; color:black; padding:20px; border-radius:10px; line-height:2;"></div>
+    </div>
+
+    <div id="dua-page" class="page">
+        <button onclick="showPage('main-page')">⬅ پاش</button>
+        <div class="list-container" id="dua-list"></div>
+    </div>
+
+    <div id="qibla-page" class="page">
+        <button onclick="showPage('main-page')">⬅ پاش</button>
+        <div id="qibla-arrow">⬆</div>
+        <p>مۆبایلا خۆ ڕاست دابنێ</p>
+    </div>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        const surahs = ["الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس", "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه", "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم", "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر", "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق", "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد
+      
